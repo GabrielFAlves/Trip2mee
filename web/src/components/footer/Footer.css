@@ -1,0 +1,33 @@
+.footer {
+    background-color: #000107;
+    color: #fff;
+    padding: 2.7em;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+  }
+
+  .footer-div {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  .footer-divider {
+    border: none;
+    height: 2px;
+    border-radius: 15px;
+    background-color: #d4d4d4;
+    margin: 0;
+  }
+
+  .footer-content {
+    padding: 10px 0;
+  }
+
+  .footer p {
+    float: left;
+    margin: 0;
+    margin-left: 1.5em;
+    font-size: 14px;
+    color: #d4d4d4;
+  }

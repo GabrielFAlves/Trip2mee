@@ -1,0 +1,71 @@
+.div-prices {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  color: #191919;
+}
+
+.hagaum {
+  margin-bottom: 2em;
+  margin-top: -1em;
+  text-align: center;
+}
+
+.pricing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  isolation: isolate;
+  margin-bottom: 2em;
+  width: 100%;
+}
+
+@media (max-width: 540px) {
+  .pricing {
+    flex-direction: column;
+  }
+}
+
+.card {
+  flex: 1;
+  max-width: 300px;
+  padding: 16px 32px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0px 2px 16px hsl(260deg 50% 20% / 0.7);
+  position: relative;
+  z-index: 1;
+}
+
+.primary.card {
+  flex: 1.25;
+  max-width: 350px;
+  z-index: 2;
+  margin: -32px -16px;
+}
+
+.card h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: hsl(0deg 0% 40%);
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.card button {
+  width: 100%;
+  height: 3rem;
+  font-size: 1rem;
+  align-self: center;
+  background-color: #2E7CD1;
+  height: 2.3rem;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}

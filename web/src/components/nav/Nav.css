@@ -1,0 +1,40 @@
+.nav {
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+}
+
+.nav-lista {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    height: 70px;
+    list-style: none;
+    padding-right: 55px;
+}
+
+.nav-logo {
+    width: 200px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-link {
+    font-size: 16px;
+    background-color: #2E7CD1;
+    padding: 6px 15px;
+    border-radius: 15px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #f88832;
+    color: #fff;
+}
