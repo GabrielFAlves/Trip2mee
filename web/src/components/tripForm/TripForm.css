@@ -1,14 +1,21 @@
-.section-form{
+.section-form {
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: #292d31;
+    justify-content: flex-start; /* Alterado para começar o conteúdo do topo */
+    background-color: #073064;
+    min-height: 80vh; /* Alterado para min-height para garantir que a altura seja pelo menos 80vh */
+    padding: 20px; /* Adicionado espaço interno */
+    overflow-y: auto; /* Adicionado overflow-y para permitir rolagem vertical se necessário */
 }
 
-.form-title{
-    align-self: center;
+.form {
+    width: 100%; /* Alterado para garantir que o formulário ocupe toda a largura */
+    max-width: 600px; /* Limitado a largura máxima do formulário */
+}
+
+.form-title {
     font-size: 1.8rem;
     margin-top: 0;
     margin-bottom: 0.5em;
@@ -31,4 +38,17 @@
 
 .remove-button:hover {
     color: darkred;
+}
+
+.api-response{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 20px;
+    padding: 10px;
+    width: 70%;
+    border-radius: 5px;
+    background-color: #101e33;
+    color: white;
+    font-weight: 20px;
 }

@@ -6,6 +6,7 @@ const TripForm = () => {
     const [duration, setDuration] = useState('');
     const [season, setSeason] = useState('');
     const [budget, setBudget] = useState('');
+    const [apiResponse, setApiResponse] = useState(null); // Estado para armazenar a resposta da API
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,27 +17,38 @@ const TripForm = () => {
         }
         try {
             const response = await fetch('http://127.0.0.1:5000/generate_trip', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-                body: JSON.stringify( requestBody )
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
             });
-      
+
             if (response.ok) {
-              const data = await response.json();
-              console.log(data);
+                const data = await response.json();
+                setApiResponse(data); // Armazenar a resposta da API
             } else {
-              const data = await response.json();
-              console.log(data);
+                const data = await response.json();
+                console.log(data);
             }
-          } catch (error) {
-            alert('erro requisicao');
-          }
-        
+        } catch (error) {
+            alert('Erro na requisição');
+        }
     };
 
-    
+    // Função para formatar a resposta da API
+    const formatApiResponse = (apiResponse) => {
+        // Substitui ** por <h2> e *** por <h3>
+        const formattedResponse = apiResponse.replace(/\*\*\s*([^*]+)\s*\*\*/g, "<h2>$1</h2>")
+                                              .replace(/\*\*\*\s*([^*]+)\s*\*\*\*/g, "<h3>$1</h3>");
+        return (
+            <div className="api-response">
+                <h2>Roteiro de Viagem Gerado</h2>
+                <div dangerouslySetInnerHTML={{ __html: formattedResponse }} />
+            </div>
+        );
+    };
+
     return (
         <section className="section-form">
             <form className="form" onSubmit={handleSubmit}>
@@ -92,10 +104,11 @@ const TripForm = () => {
                     </select>
                 </label>
 
-
-                
                 <button className="button" type="submit">Enviar</button>
             </form>
+
+            {/* Verifica se há uma resposta da API e, se houver, formata-a */}
+            {apiResponse && formatApiResponse(apiResponse.text)}
         </section>
     );
 };
