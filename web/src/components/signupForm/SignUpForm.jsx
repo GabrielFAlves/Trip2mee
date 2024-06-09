@@ -19,7 +19,7 @@ function SignUpForm() {
     params.append('email', email);
 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/signup', params, {
+      const response = await axios.post('https://firmamento.pythonanywhere.com/signup', params, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }

@@ -6,17 +6,18 @@ const TripForm = () => {
     const [duration, setDuration] = useState('');
     const [season, setSeason] = useState('');
     const [budget, setBudget] = useState('');
-    const [apiResponse, setApiResponse] = useState(null); // Estado para armazenar a resposta da API
+    const [interests, setInterests] = useState(''); // Novo estado para os interesses da pessoa
+    const [apiResponse, setApiResponse] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Dados do formulário:', { destination, duration, season, budget });
-        const prompt = `Gostaria de criar um roteiro de viagem, eu vou para ${destination}, ficarei ${duration} dias, a estação será ${season} e meu orçamento é ${budget}.`
+        console.log('Dados do formulário:', { destination, duration, season, budget, interests });
+        const prompt = `Gostaria de criar um roteiro de viagem, eu vou para ${destination}, ficarei ${duration} dias, a estação será ${season}, meu orçamento é ${budget} e gosto de fazer ${interests}. (o texto deve ser formatado como se fosse um html)`;
         const requestBody = {
             prompt: prompt
         }
         try {
-            const response = await fetch('http://127.0.0.1:5000/generate_trip', {
+            const response = await fetch('https://firmamento.pythonanywhere.com/generate_trip', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -26,7 +27,7 @@ const TripForm = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                setApiResponse(data); // Armazenar a resposta da API
+                setApiResponse(data);
             } else {
                 const data = await response.json();
                 console.log(data);
@@ -34,19 +35,6 @@ const TripForm = () => {
         } catch (error) {
             alert('Erro na requisição');
         }
-    };
-
-    // Função para formatar a resposta da API
-    const formatApiResponse = (apiResponse) => {
-        // Substitui ** por <h2> e *** por <h3>
-        const formattedResponse = apiResponse.replace(/\*\*\s*([^*]+)\s*\*\*/g, "<h2>$1</h2>")
-                                              .replace(/\*\*\*\s*([^*]+)\s*\*\*\*/g, "<h3>$1</h3>");
-        return (
-            <div className="api-response">
-                <h2>Roteiro de Viagem Gerado</h2>
-                <div dangerouslySetInnerHTML={{ __html: formattedResponse }} />
-            </div>
-        );
     };
 
     return (
@@ -104,11 +92,25 @@ const TripForm = () => {
                     </select>
                 </label>
 
+                <label className="label">
+                    Interesses:
+                    <input
+                        className="input"
+                        type="text"
+                        value={interests}
+                        onChange={e => setInterests(e.target.value)}
+                    />
+                </label>
+
                 <button className="button" type="submit">Enviar</button>
             </form>
 
-            {/* Verifica se há uma resposta da API e, se houver, formata-a */}
-            {apiResponse && formatApiResponse(apiResponse.text)}
+            {apiResponse && (
+                <div className="api-response">
+                    <h2>Roteiro de Viagem Gerado</h2>
+                    <div dangerouslySetInnerHTML={{ __html: apiResponse.text }} />
+                </div>
+            )}
         </section>
     );
 };
