@@ -4,15 +4,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80vh;
+    min-height: 80vh; /* Usar min-height em vez de height para permitir que o conteúdo aumente conforme necessário */
     background-color: #292d31;
 }
 
 .title{
-    align-self: center;
     font-size: 1.8rem;
     margin-top: 0;
     margin-bottom: 1.5em;
+    text-align: center; /* Centralizar o texto */
 }
 
 .form{
@@ -21,7 +21,9 @@
     /* border: 2px solid #d4d4d4; */
     box-shadow: 0 0 15px #191919;
     border-radius: 7px;
-    padding: 3.5em 4em;
+    padding: 2em; /* Reduzir o padding para torná-lo mais compacto */
+    width: 90%; /* Definir uma largura máxima para o formulário */
+    max-width: 400px; /* Definir uma largura máxima para o formulário */
 }
 
 .label{
@@ -40,10 +42,8 @@
 }
 
 .button{
-    width: 103%;
-    margin-left: 5px;
+    width: 100%;
     font-size: 1rem;
-    align-self: center;
     background-color: #2E7CD1;
     height: 2.3rem;
     color: white;
