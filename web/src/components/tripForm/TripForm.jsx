@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { marked } from 'marked';
 import "./TripForm.css";
 
 const TripForm = () => {
@@ -6,13 +7,13 @@ const TripForm = () => {
     const [duration, setDuration] = useState('');
     const [season, setSeason] = useState('');
     const [budget, setBudget] = useState('');
-    const [interests, setInterests] = useState(''); // Novo estado para os interesses da pessoa
+    const [interests, setInterests] = useState('');
     const [apiResponse, setApiResponse] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Dados do formulário:', { destination, duration, season, budget, interests });
-        const prompt = `Gostaria de criar um roteiro de viagem, eu vou para ${destination}, ficarei ${duration} dias, a estação será ${season}, meu orçamento é ${budget} e gosto de fazer ${interests}. (o texto deve ser formatado como se fosse um html)`;
+        const prompt = `Gostaria de criar um roteiro de viagem, eu vou para ${destination}, ficarei ${duration} dias, a estação será ${season}, meu orçamento é ${budget} e gosto de fazer ${interests}.`;
         const requestBody = {
             prompt: prompt
         }
@@ -108,7 +109,7 @@ const TripForm = () => {
             {apiResponse && (
                 <div className="api-response">
                     <h2>Roteiro de Viagem Gerado</h2>
-                    <div dangerouslySetInnerHTML={{ __html: apiResponse.text }} />
+                    <div dangerouslySetInnerHTML={{ __html: marked(apiResponse.text) }} />
                 </div>
             )}
         </section>

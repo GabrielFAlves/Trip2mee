@@ -38,3 +38,15 @@
     background-color: #f88832;
     color: #fff;
 }
+
+@media screen and (max-width: 768px) {
+    .nav-lista {
+        width: 100%; /* Alterar a largura para ocupar toda a largura da tela */
+        padding: 0; /* Remover o padding direito */
+    }
+
+    .nav-links {
+        flex-direction: column; /* Alterar a direção para empilhar os links verticalmente */
+        align-items: center; /* Centralizar os links */
+    }
+}

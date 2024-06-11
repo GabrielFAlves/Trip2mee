@@ -104,3 +104,34 @@ span {
 .vantagens-body {
     color: #073064;
 }
+
+/* Para telas menores que 768px */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Empilhar as divs verticalmente em telas pequenas */
+        height: auto; /* Permitir que a altura seja ajustada automaticamente */
+        justify-content: center; /* Centralizar verticalmente os conteúdos */
+    }
+
+    .div-esq,
+    .div-dir {
+        width: 90%; /* Reduzir a largura das divs para ocupar mais espaço em telas pequenas */
+        margin: 2em auto; /* Centralizar as divs e adicionar espaço entre elas */
+    }
+
+    .img,
+    .img2 {
+        width: 100%; /* Fazer com que as imagens ocupem a largura completa do contêiner */
+        margin-bottom: 1em; /* Adicionar espaço entre as imagens */
+        border-radius: 15px; /* Restaurar o raio da borda */
+    }
+
+    .features li {
+        padding-left: 0.5em; /* Reduzir o recuo do item da lista */
+        margin-bottom: 0.5em; /* Adicionar espaço entre os itens da lista */
+    }
+
+    .features li::before {
+        left: -0.5em; /* Ajustar a posição do indicador da lista */
+    }
+}
