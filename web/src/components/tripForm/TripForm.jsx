@@ -7,13 +7,15 @@ const TripForm = () => {
     const [duration, setDuration] = useState('');
     const [season, setSeason] = useState('');
     const [budget, setBudget] = useState('');
-    const [interests, setInterests] = useState('');
+    const [activities, setActivities] = useState('');
+    const [hobbies, setHobbies] = useState('');
+    const [environment, setEnvironment] = useState('');
     const [apiResponse, setApiResponse] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Dados do formulário:', { destination, duration, season, budget, interests });
-        const prompt = `Gostaria de criar um roteiro de viagem, eu vou para ${destination}, ficarei ${duration} dias, a estação será ${season}, meu orçamento é ${budget} e gosto de fazer ${interests}.`;
+        console.log('Dados do formulário:', { destination, duration, season, budget, activities, hobbies, environment });
+        const prompt = `Gostaria de criar um roteiro de viagem, eu vou para ${destination}, ficarei ${duration} dias, a estação será ${season}, meu orçamento é ${budget}, gosto de atividades ${activities}, meus hobbies são ${hobbies} e prefiro ambientes ${environment}.`;
         const requestBody = {
             prompt: prompt
         }
@@ -87,20 +89,49 @@ const TripForm = () => {
                         onChange={e => setBudget(e.target.value)}
                     >
                         <option value="">Selecione</option>
-                        <option value="Baixo">Baixo</option>
-                        <option value="Médio">Médio</option>
-                        <option value="Alto">Alto</option>
+                        <option value="Baixo">Baixo - Viagem econômica, preferindo acomodações simples e refeições baratas.</option>
+                        <option value="Médio">Médio - Viagem confortável, com um equilíbrio entre economia e conforto.</option>
+                        <option value="Alto">Alto - Viagem de luxo, preferindo acomodações premium e experiências exclusivas.</option>
                     </select>
                 </label>
 
                 <label className="label">
-                    Interesses:
+                    Tipo de Atividades:
+                    <select
+                        className="input"
+                        value={activities}
+                        onChange={e => setActivities(e.target.value)}
+                    >
+                        <option value="">Selecione</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Cultura">Cultura</option>
+                        <option value="Gastronomia">Gastronomia</option>
+                        <option value="História">História</option>
+                    </select>
+                </label>
+
+                <label className="label">
+                    Hobbies:
                     <input
                         className="input"
                         type="text"
-                        value={interests}
-                        onChange={e => setInterests(e.target.value)}
+                        value={hobbies}
+                        onChange={e => setHobbies(e.target.value)}
                     />
+                </label>
+
+                <label className="label">
+                    Ambiente Preferido:
+                    <select
+                        className="input"
+                        value={environment}
+                        onChange={e => setEnvironment(e.target.value)}
+                    >
+                        <option value="">Selecione</option>
+                        <option value="Cidades agitadas">Cidades agitadas</option>
+                        <option value="Paisagens naturais">Paisagens naturais</option>
+                        <option value="Resorts de luxo">Resorts de luxo</option>
+                    </select>
                 </label>
 
                 <button className="button" type="submit">Enviar</button>
